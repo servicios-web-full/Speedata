@@ -2,98 +2,22 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>📡 Servicios Web Full</title>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 512 512%22><path fill=%22%2300D1FF%22 d=%22M192 32c0 17.7 14.3 32 32 32c123.7 0 224 100.3 224 224c0 17.7 14.3 32 32 32s32-14.3 32-32C512 128.9 383.1 0 224 0c-17.7 0-32 14.3-32 32zM0 480c0 17.7 14.3 32 32 32s32-14.3 32-32c0-53 43-96 96-96s96 43 96 96c0 17.7 14.3 32 32 32s32-14.3 32-32c0-88.4-71.6-160-160-160S0 391.6 0 480zM352 288c0 17.7 14.3 32 32 32s32-14.3 32-32c0-70.7-57.3-128-128-128c-17.7 0-32 14.3-32 32s14.3 32 32 32c35.3 0 64 28.7 64 64z%22/></svg>">
-
     <style>
-        /* Estilos base para pantalla completa */
-        body, html { 
-            margin: 0; 
-            padding: 0; 
-            height: 100%; 
-            width: 100%;
-            overflow: hidden; 
-            background-color: #0b0f19; /* Fondo oscuro profesional */
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        /* Pantalla de carga (Loader) */
-        #loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            color: #00D1FF;
-            transition: opacity 0.5s ease;
-        }
-
-        .satellite-icon {
-            font-size: 60px;
-            margin-bottom: 20px;
-            animation: pulse-spin 2s infinite ease-in-out;
-        }
-
-        @keyframes pulse-spin {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.2); opacity: 0.6; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        #loader p {
-            font-size: 18px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        /* Iframe con transición de entrada */
-        iframe { 
-            border: none; 
-            width: 100%; 
-            height: 100vh; 
-            display: block;
-            opacity: 0;
-            transition: opacity 1s ease;
-        }
+        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #0b101a; color: #00D1FF; font-family: sans-serif; }
+        #loader { position: fixed; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9; }
+        .fa-satellite-dish { font-size: 50px; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.2); opacity: 0.5; } }
+        iframe { width: 100%; height: 100vh; border: none; display: block; opacity: 0; transition: 0.5s; }
     </style>
 </head>
 <body>
-
     <div id="loader">
-        <i class="fa-solid fa-satellite-dish satellite-icon"></i>
-        <p>Iniciando Sistema...</p>
+        <i class="fa-solid fa-satellite-dish"></i>
+        <p>CONECTANDO...</p>
     </div>
-
-    <iframe id="googleApp" 
-            src="https://script.google.com/macros/s/AKfycbx0hs7JzbH1QeeJszQqA-bb2km2fAXBnol5yrKtUrVpB3H0ieRlkn7-RoCNEWra_2xLEQ/exec" 
-            onload="ready()">
-    </iframe>
-
-    <script>
-        function ready() {
-            // Cuando el iframe carga, desaparece el loader y aparece la app
-            const loader = document.getElementById('loader');
-            const app = document.getElementById('googleApp');
-            
-            loader.style.opacity = '0';
-            app.style.opacity = '1';
-
-            // Eliminar el loader del DOM tras la animación
-            setTimeout(() => {
-                loader.style.display = 'none';
-            }, 600);
-        }
-    </script>
-
+    <iframe id="app" src="https://script.google.com/macros/s/AKfycb0hs7JzbH1QeeJszQqA-bb2km2fAXBnol5yrKtUrVpB3H0ieRlkn7-RoCNEWra_2xLEQ/exec" onload="this.style.opacity=1; document.getElementById('loader').style.display='none';"></iframe>
 </body>
 </html>
